@@ -98,7 +98,7 @@
     </table>
   </div>
 
-  <form action="/admin-home{{ 'true' if bool1 else 'false' }} " method="post" class="text-center mt-3">
+  <form action="{{ url_for('main.adminhome', bool1=('true' if bool1 else 'false'),userid=userid) }}" method="post" class="text-center mt-3">
     <button type="submit" class="btn btn-primary">Add New Category</button>
   </form>
   {% else %}

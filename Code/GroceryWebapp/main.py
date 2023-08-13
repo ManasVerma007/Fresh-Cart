@@ -52,7 +52,7 @@ def adminhome(bool1,userid):
             bool = False
             if bool_value == True:
                 bool = True
-        return render_template("home_admin.html", bool=bool)
+        return render_template("home_admin.html", bool=bool, userid=userid)
 
 @main.route('/adminhomecategories', methods=['GET', 'POST'])
 @login_required
@@ -70,7 +70,7 @@ def adminhomecategories():
                 db.session.add(new_cat)
                 db.session.commit()
         data = Categories.query.all()
-        return render_template("home_admin.html", bool=True, data=data)
+        return render_template("home_admin.html", bool=True, data=data, userid=global_user)
     else:
         return("<center><h1>Access Denied</h1></center>")    
 
@@ -82,8 +82,9 @@ def adminshowcategories():
     global global_user
     if current_user.is_authenticated and current_user.id == global_user:
         data = Categories.query.all()
-        return render_template("home_admin.html", bool=True, data=data, boolcat=True)
-
+        return render_template("home_admin.html", bool=True, data=data, boolcat=True,userid=global_user)
+    else:
+        return("<center><h1>Access Denied</h1></center>")
 
 # Route to update a category
 @main.route("/Categoryupdate/<string:categories_id>", methods=["GET", "POST"])
@@ -97,8 +98,7 @@ def update_category(categories_id):
             # Update the category name based on the form submission
             ncat.cat_name = request.form["ncategory"]
             db.session.commit()
-            flash("Your post has been updated!")
-            return redirect(url_for("main.adminhome", bool1=False))
+            return redirect(url_for("main.adminhome", bool1=False,userid=global_user))
 
         return render_template("update_categories.html", categories=ncat)
     else:
@@ -212,12 +212,12 @@ def delete_category(categories_id):
             db.session.delete(cname)
             db.session.commit()
             datacat = Categories.query.all()
-            return render_template("home_admin.html", bool=True, data=datacat, boolcat=True)
+            return render_template("home_admin.html", bool=True, data=datacat, boolcat=True, userid=global_user)
         except Exception as e:
             print(f"Error: {e}")
             db.session.rollback()  
             datacat = Categories.query.all()
-            return render_template("home_admin.html", bool=True, data=datacat, boolcat=True)
+            return render_template("home_admin.html", bool=True, data=datacat, boolcat=True,userid=global_user)
     else:
         return("<center><h1>Access Denied</h1></center>")
 
