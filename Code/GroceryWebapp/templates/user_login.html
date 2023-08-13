@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<title>LOGIN-PAGE</title>
+<style>
+  body {
+    background-color: lightblue;
+  }
+</style>
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div id="navbar">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" id="home" href="/logout">Home</a>
+      <a class="nav-item nav-link" id="user_login" href="/user_signup">User Signup</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center">USER LOGIN PAGE</h1>
+  <form method="POST"  action="{{ url_for('auth.userlogin')}}" class="mt-4">
+    <h3 class="text-center">LOGIN</h3>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
+    </div>
+    <br>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  {% block head %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous" />
+  
+  {% endblock %}
+
+</head>
+
+<body>
+  {% block nav %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div  id="navbar">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" id="user_login" href="/user_login">User Login</a>
+        <a class="nav-item nav-link" id="admin_login" href="/admin_login">Admin Login</a>
+      </div>
+    </div>
+  </nav>
+  {% endblock %}
+
+  <div class="container content-container">
+    {% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'demo0.css') }}"
+    crossorigin="anonymous" />
+    <div class="jumbotron shadow">
+      <h1>Welcome to FRESH CART</h1>
+      <ul>
+        <li>A web application using Flask and Jinja2.</li>
+        <li>A multi-user platform that facilitates grocery shopping for users.</li>
+        <li>Fully fledged Login system using Flask Login.</li>
+        <li>Empowers the store manager to efficiently manage inventory.</li>
+        <li>Users can browse and purchase various products from different categories.</li>
+        <li>Store managers can add new sections, categories, and products to keep the app up-to-date.</li>
+        <li>Secured user authentication and authorization system for enhanced privacy and control.</li>
+        <li>Intuitive user interface with a user-friendly shopping cart for seamless shopping experience.</li>
+        <li>Real-time inventory tracking to avoid out-of-stock situations and maintain stock levels.</li>
+      </ul>
+    </div>
+
+    {% endblock %}
+  </div>
+</body>
+
+</html>
